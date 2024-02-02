@@ -787,13 +787,14 @@ export interface ApiPublisherPublisher extends Schema.CollectionType {
     singularName: 'publisher';
     pluralName: 'publishers';
     displayName: 'publisher';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
-    site: Attribute.String;
+    name: Attribute.String & Attribute.Required;
+    site: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
