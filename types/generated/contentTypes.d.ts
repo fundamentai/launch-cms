@@ -283,6 +283,53 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
     }
 }
 
+export interface ApiPublisherPublisher extends Schema.CollectionType {
+    collectionName: 'publishers'
+    info: {
+        singularName: 'publisher'
+        pluralName: 'publishers'
+        displayName: 'publisher'
+        description: ''
+    }
+    options: {
+        draftAndPublish: true
+    }
+    attributes: {
+        name: Attribute.String & Attribute.Required
+        site: Attribute.String & Attribute.Required & Attribute.Unique
+        createdAt: Attribute.DateTime
+        updatedAt: Attribute.DateTime
+        publishedAt: Attribute.DateTime
+        createdBy: Attribute.Relation<'api::publisher.publisher', 'oneToOne', 'admin::user'> & Attribute.Private
+        updatedBy: Attribute.Relation<'api::publisher.publisher', 'oneToOne', 'admin::user'> & Attribute.Private
+    }
+}
+
+export interface ApiSourceSource extends Schema.CollectionType {
+    collectionName: 'sources'
+    info: {
+        singularName: 'source'
+        pluralName: 'sources'
+        displayName: 'source'
+        description: ''
+    }
+    options: {
+        draftAndPublish: true
+    }
+    attributes: {
+        title: Attribute.String & Attribute.Required
+        content: Attribute.Text & Attribute.Required
+        publisher: Attribute.Relation<'api::source.source', 'oneToOne', 'api::publisher.publisher'>
+        source: Attribute.String & Attribute.Required
+        summary: Attribute.JSON
+        createdAt: Attribute.DateTime
+        updatedAt: Attribute.DateTime
+        publishedAt: Attribute.DateTime
+        createdBy: Attribute.Relation<'api::source.source', 'oneToOne', 'admin::user'> & Attribute.Private
+        updatedBy: Attribute.Relation<'api::source.source', 'oneToOne', 'admin::user'> & Attribute.Private
+    }
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
     collectionName: 'files'
     info: {
@@ -576,52 +623,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     }
 }
 
-export interface ApiPublisherPublisher extends Schema.CollectionType {
-    collectionName: 'publishers'
-    info: {
-        singularName: 'publisher'
-        pluralName: 'publishers'
-        displayName: 'publisher'
-        description: ''
-    }
-    options: {
-        draftAndPublish: true
-    }
-    attributes: {
-        name: Attribute.String & Attribute.Required
-        site: Attribute.String & Attribute.Required & Attribute.Unique
-        createdAt: Attribute.DateTime
-        updatedAt: Attribute.DateTime
-        publishedAt: Attribute.DateTime
-        createdBy: Attribute.Relation<'api::publisher.publisher', 'oneToOne', 'admin::user'> & Attribute.Private
-        updatedBy: Attribute.Relation<'api::publisher.publisher', 'oneToOne', 'admin::user'> & Attribute.Private
-    }
-}
-
-export interface ApiSourceSource extends Schema.CollectionType {
-    collectionName: 'sources'
-    info: {
-        singularName: 'source'
-        pluralName: 'sources'
-        displayName: 'source'
-        description: ''
-    }
-    options: {
-        draftAndPublish: true
-    }
-    attributes: {
-        title: Attribute.String & Attribute.Required
-        content: Attribute.Text & Attribute.Required
-        publisher: Attribute.Relation<'api::source.source', 'oneToOne', 'api::publisher.publisher'>
-        source: Attribute.String & Attribute.Required
-        createdAt: Attribute.DateTime
-        updatedAt: Attribute.DateTime
-        publishedAt: Attribute.DateTime
-        createdBy: Attribute.Relation<'api::source.source', 'oneToOne', 'admin::user'> & Attribute.Private
-        updatedBy: Attribute.Relation<'api::source.source', 'oneToOne', 'admin::user'> & Attribute.Private
-    }
-}
-
 declare module '@strapi/types' {
     export module Shared {
         export interface ContentTypes {
@@ -632,6 +633,8 @@ declare module '@strapi/types' {
             'admin::api-token-permission': AdminApiTokenPermission
             'admin::transfer-token': AdminTransferToken
             'admin::transfer-token-permission': AdminTransferTokenPermission
+            'api::publisher.publisher': ApiPublisherPublisher
+            'api::source.source': ApiSourceSource
             'plugin::upload.file': PluginUploadFile
             'plugin::upload.folder': PluginUploadFolder
             'plugin::content-releases.release': PluginContentReleasesRelease
@@ -640,8 +643,6 @@ declare module '@strapi/types' {
             'plugin::users-permissions.permission': PluginUsersPermissionsPermission
             'plugin::users-permissions.role': PluginUsersPermissionsRole
             'plugin::users-permissions.user': PluginUsersPermissionsUser
-            'api::publisher.publisher': ApiPublisherPublisher
-            'api::source.source': ApiSourceSource
         }
     }
 }
