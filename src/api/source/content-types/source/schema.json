@@ -24,6 +24,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::publisher.publisher"
+    },
+    "source": {
+      "type": "string",
+      "required": true
     }
   }
 }

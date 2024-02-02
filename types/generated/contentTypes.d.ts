@@ -832,6 +832,7 @@ export interface ApiSourceSource extends Schema.CollectionType {
       'oneToOne',
       'api::publisher.publisher'
     >;
+    source: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
