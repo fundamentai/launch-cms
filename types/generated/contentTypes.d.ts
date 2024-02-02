@@ -825,8 +825,8 @@ export interface ApiSourceSource extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    content: Attribute.Text;
+    title: Attribute.String & Attribute.Required;
+    content: Attribute.Text & Attribute.Required;
     publisher: Attribute.Relation<
       'api::source.source',
       'oneToOne',
