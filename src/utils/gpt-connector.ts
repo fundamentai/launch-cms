@@ -1,44 +1,41 @@
-import { config } from "dotenv";
-import axios from "axios";
+import { config } from 'dotenv'
+import axios from 'axios'
 
-config();
+config()
 
 export const client = axios.create({
-  baseURL: process.env.GPT_CONNECTOR + "3213",
-});
+    baseURL: process.env.GPT_CONNECTOR + '3213'
+})
 
-export async function sendMessageToAssistant(
-  systemKey: string,
-  content: string
-) {
-  var res, data;
-  try {
-    res = await client.post(
-      "/openai/continueCompletion",
-      {
-        message: {
-          content,
-          role: "user",
-        },
-        openaiConfig: {
-          max_tokens: 4096,
-        },
-      },
-      {
-        params: {
-          systemKey,
-        },
-      }
-    );
-
-    data = res.data.result.message.content;
-  } catch (error) {
+export async function sendMessageToAssistant(systemKey: string, content: string) {
+    var res, data
     try {
-      data = error.response.data.error.message;
-    } catch (error) {
-      data = error.message;
-    }
-  }
+        res = await client.post(
+            '/openai/continueCompletion',
+            {
+                message: {
+                    content,
+                    role: 'user'
+                },
+                openaiConfig: {
+                    max_tokens: 4096
+                }
+            },
+            {
+                params: {
+                    systemKey
+                }
+            }
+        )
 
-  return data;
+        data = res.data.result.message.content
+    } catch (error) {
+        try {
+            data = error.response.data.error.message
+        } catch (error) {
+            data = error.message
+        }
+    }
+
+    return data
 }

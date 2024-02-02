@@ -4,4 +4,4 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::publisher.publisher');
+export default factories.createCoreController('api::publisher.publisher')
