@@ -4,7 +4,7 @@ import axios from 'axios'
 config()
 
 export const client = axios.create({
-    baseURL: process.env.GPT_CONNECTOR + '3213'
+    baseURL: process.env.GPT_CONNECTOR
 })
 
 export async function sendMessageToAssistant(systemKey: string, content: string) {
