@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tcmbs",
+  "info": {
+    "singularName": "tcmb",
+    "pluralName": "tcmbs",
+    "displayName": "tcmb"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}

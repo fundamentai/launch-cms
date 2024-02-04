@@ -1,25 +1,35 @@
 {
-    "kind": "collectionType",
-    "collectionName": "publishers",
-    "info": {
-        "singularName": "publisher",
-        "pluralName": "publishers",
-        "displayName": "publisher",
-        "description": ""
+  "kind": "collectionType",
+  "collectionName": "publishers",
+  "info": {
+    "singularName": "publisher",
+    "pluralName": "publishers",
+    "displayName": "publisher",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "options": {
-        "draftAndPublish": true
+    "site": {
+      "type": "string",
+      "required": true,
+      "unique": true
     },
-    "pluginOptions": {},
-    "attributes": {
-        "name": {
-            "type": "string",
-            "required": true
-        },
-        "site": {
-            "type": "string",
-            "required": true,
-            "unique": true
-        }
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
+  }
 }
