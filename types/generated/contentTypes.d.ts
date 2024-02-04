@@ -653,13 +653,13 @@ export interface ApiTcmbTcmb extends Schema.CollectionType {
         singularName: 'tcmb'
         pluralName: 'tcmbs'
         displayName: 'tcmb'
+        description: ''
     }
     options: {
         draftAndPublish: true
     }
     attributes: {
-        content: Attribute.String
-        date: Attribute.DateTime
+        content: Attribute.Text
         createdAt: Attribute.DateTime
         updatedAt: Attribute.DateTime
         publishedAt: Attribute.DateTime
